@@ -35,6 +35,11 @@
             maxPrice: 850,
             autoAdjust: false
         },
+        { // Microsoft 9FD-00001 Surface Book Intel Core i7 8GB RAM 256GB HDD
+            id: 2048686,
+            maxPrice: 650,
+            autoAdjust: false
+        },
         //-------
     ];
 
