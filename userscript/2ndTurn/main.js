@@ -30,6 +30,11 @@
             maxPrice: 700,
             autoAdjust: false
         },
+        { // Apple MPXT2LL/A MacBook Pro 13.3in Laptop i5 2.3GHZ 8GB RAM 256GB HDD
+            id: 2048942,
+            maxPrice: 850,
+            autoAdjust: false
+        },
         //-------
     ];
 
