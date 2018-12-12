@@ -17,7 +17,7 @@
         //-------
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
             id: 2052270,
-            maxPrice: 17,
+            maxPrice: 18,
             autoAdjust: false
         },
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
