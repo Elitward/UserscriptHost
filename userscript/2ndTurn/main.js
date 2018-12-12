@@ -15,29 +15,24 @@
 
     const Targets = [
         //-------
-        { // Microsoft PS2-00001 Surface Pro 3 12in 256GB Windows 10 Tablet With Intel Core i5 Processor - Silver
-            id: 2040694,
-            maxPrice: 333,
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2052270,
+            maxPrice: 17,
             autoAdjust: false
         },
-        { // Apple ML8V2LL/A Beats by Dr.Dre Powerbeats 3 In-Ear Bluetooth Sport Headphones - Black
-            id: 2040645,
-            maxPrice: 60,
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2053183,
+            maxPrice: 15,
             autoAdjust: false
         },
-        { // Microsoft SX3-00001 13.5in Surface Book IC i5 2.40GHz 8GB RAM 256GB HDD - Silver
-            id: 2040700,
-            maxPrice: 700,
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2052935,
+            maxPrice: 15,
             autoAdjust: false
         },
-        { // Apple MPXT2LL/A MacBook Pro 13.3in Laptop i5 2.3GHZ 8GB RAM 256GB HDD
-            id: 2048942,
-            maxPrice: 850,
-            autoAdjust: false
-        },
-        { // Microsoft 9FD-00001 Surface Book Intel Core i7 8GB RAM 256GB HDD
-            id: 2048686,
-            maxPrice: 650,
+        { // Thinkware F750 Full HD 1080p Dashcam with GPS, Wi-Fi and Speed/Red Light Camera Alerts
+            id: 2053050 ,
+            maxPrice: 106.01,
             autoAdjust: false
         },
         //-------
