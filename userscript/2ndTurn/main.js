@@ -30,9 +30,9 @@
             maxPrice: 106.01,
             autoAdjust: false
         },
-        { // LG 29WK500-P.AUS 29in UltraWide FHD 5ms GTG IPS LED Monitor - Black
-            id: 2052742,
-            maxPrice: 160.01,
+        { // Plantronics 5451727 Calisto P610-M USB Portable Speakerphone
+            id: 2052738,
+            maxPrice: 15,
             autoAdjust: false
         },
         //-------
