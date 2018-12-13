@@ -16,11 +16,6 @@
     const Targets = [
         //-------
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
-            id: 2052270,
-            maxPrice: 18,
-            autoAdjust: false
-        },
-        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
             id: 2053183,
             maxPrice: 15,
             autoAdjust: false
@@ -33,6 +28,11 @@
         { // Thinkware F750 Full HD 1080p Dashcam with GPS, Wi-Fi and Speed/Red Light Camera Alerts
             id: 2053050 ,
             maxPrice: 106.01,
+            autoAdjust: false
+        },
+        { // LG 29WK500-P.AUS 29in UltraWide FHD 5ms GTG IPS LED Monitor - Black
+            id: 2052742,
+            maxPrice: 160.01,
             autoAdjust: false
         },
         //-------
