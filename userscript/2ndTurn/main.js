@@ -25,14 +25,9 @@
             maxPrice: 15,
             autoAdjust: false
         },
-        { // Thinkware F750 Full HD 1080p Dashcam with GPS, Wi-Fi and Speed/Red Light Camera Alerts
-            id: 2053050 ,
-            maxPrice: 106.01,
-            autoAdjust: false
-        },
-        { // Plantronics 5451727 Calisto P610-M USB Portable Speakerphone
-            id: 2052738,
-            maxPrice: 15,
+        { // Apple MP1U2LL/A iPad 5th Gen 32GB WiFi + Cellular - Space Gray
+            id: 2052917 ,
+            maxPrice: 320.01,
             autoAdjust: false
         },
         //-------
