@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     // Your code here...
-    console.log('Eli: Tampermonkey starts...');
+    console.log('Eli: Tampermonkey starts...', window.location);
 
     window.onload = function() {
         console.log('Eli: the page has finished loading...');
