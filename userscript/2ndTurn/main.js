@@ -13,7 +13,7 @@
 function main(targets, settings) {
     'use strict';
 
-    const Targets = Object.assign([
+    const Targets = [
         //-------
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
             id: 2052935,
@@ -26,7 +26,8 @@ function main(targets, settings) {
             autoAdjust: false
         },
         //-------
-    ], targets);
+    ];
+    Targets.push(targets);
     console.log('# merged Targets', Targets);
 
     const Settings = Object.assign({
