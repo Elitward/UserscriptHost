@@ -357,3 +357,8 @@
     }
 
 })();
+
+
+function test(){
+    console.log('eli: this is test method.');
+}
