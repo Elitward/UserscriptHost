@@ -26,8 +26,7 @@ function main(targets, settings) {
             autoAdjust: false
         },
         //-------
-    ];
-    Targets.concat(targets);
+    ].concat(targets);
     console.log('# merged Targets', Targets);
 
     const Settings = Object.assign({
