@@ -16,13 +16,39 @@ function main(targets, settings) {
     const Targets = [
         //-------
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2054524,
+            maxPrice: 18,
+            autoAdjust: false
+        },
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2054525,
+            maxPrice: 18,
+            autoAdjust: false
+        },
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
             id: 2052935,
             maxPrice: 18,
             autoAdjust: false
         },
-        { // Apple MP1U2LL/A iPad 5th Gen 32GB WiFi + Cellular - Space Gray
-            id: 2052917 ,
-            maxPrice: 320.01,
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2054526,
+            maxPrice: 18,
+            autoAdjust: false
+        },
+        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
+            id: 2054650,
+            maxPrice: 18,
+            autoAdjust: false
+        },
+        
+        { // Microsoft P3Q-00020 Wireless Display Adapter
+            id: 2055866 ,
+            maxPrice: 20.01,
+            autoAdjust: false
+        },
+        { // HTC 99HZF001-00 Nexus 9 8.9in 16GB Android 5.0 Tablet - White
+            id: 2055489 ,
+            maxPrice: 111.01,
             autoAdjust: false
         },
         //-------
