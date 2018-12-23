@@ -27,7 +27,7 @@ function main(targets, settings) {
         },
         //-------
     ];
-    Targets.push(targets);
+    Targets.concat(targets);
     console.log('# merged Targets', Targets);
 
     const Settings = Object.assign({
