@@ -10,10 +10,10 @@
 // Your bid was less than the minimum bid amount. Your bid has automatically been changed to $86.00
 //-----------------------
 
-(function() {
+function main(targets, settings) {
     'use strict';
 
-    const Targets = [
+    const Targets = Object.assign([
         //-------
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
             id: 2052935,
@@ -26,13 +26,16 @@
             autoAdjust: false
         },
         //-------
-    ];
+    ], targets);
+    console.log('# merged Targets', Targets);
 
-    const MyUsername = 'Elitward';
-
-    const BiddingInAdvance = 5; // 5 second
-    const LastRefreshInAdvance = 30; // 30 second
-    const SessionRefreshPeriod = 10*60; // second
+    const Settings = Object.assign({
+        myUsername: 'nobody',
+        biddingInAdvance: 5, // 5 second
+        lastRefreshInAdvance: 30, // 30 second
+        sessionRefreshPeriod: 10*60 // second
+    }, settings);
+    console.log('# merged Settings', Settings);
 
     // Your code here...
 
@@ -147,7 +150,7 @@
     }
 
     function matchUsername(bidder) {
-        let myname = MyUsername.slice(0, 2) + '**' + MyUsername.slice(MyUsername.length-2);
+        let myname = Settings.myUsername.slice(0, 2) + '**' + Settings.myUsername.slice(Settings.myUsername.length-2);
         return (myname == bidder) ? true : false;
     }
 
@@ -261,10 +264,10 @@
     var sessionTimer = null;
 
     // avoid session timeout
-    console.log('# Refresh to keep session after ' + (SessionRefreshPeriod/60).toFixed() + ' (mins)');
+    console.log('# Refresh to keep session after ' + (Settings.sessionRefreshPeriod/60).toFixed() + ' (mins)');
     sessionTimer = setTimeout(function(){
         location.reload();
-    }, SessionRefreshPeriod*1000);
+    }, Settings.sessionRefreshPeriod*1000);
 
     if (detailsUrlRegEx.test(url)) {
         console.log('# This is an item info page.');
@@ -293,7 +296,7 @@
             if (target) {
                 console.log('# Target:', target);
 
-                let secToLastRefrsh = secondLeft - LastRefreshInAdvance;
+                let secToLastRefrsh = secondLeft - Settings.lastRefreshInAdvance;
                 if (secToLastRefrsh>=0) { // set last refresh
                     console.log('# Last refresh after ' + (secToLastRefrsh/60).toFixed(2) + ' (min) = [' + secToLastRefrsh + '(sec)]');
                     lastRefreshTimer = setTimeout(function(){
@@ -304,7 +307,7 @@
                 if (matchUsername(highBidder)) {
                     console.log('# I am the current high bidder!');
                 } else {
-                    let secToBid = secondLeft - BiddingInAdvance;
+                    let secToBid = secondLeft - Settings.biddingInAdvance;
                     if (secToBid>=0) {
                         console.log('# To Bid after ' + (secToBid/60).toFixed(2) + ' (min) = [' + secToBid + '(sec)]');
                     } else {
@@ -351,9 +354,6 @@
         }
     }
 
-})();
+};
 
 
-function test(){
-    console.log('eli: this is test method.');
-}
