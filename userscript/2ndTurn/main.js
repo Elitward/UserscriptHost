@@ -16,13 +16,8 @@
     const Targets = [
         //-------
         { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
-            id: 2053183,
-            maxPrice: 15,
-            autoAdjust: false
-        },
-        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
             id: 2052935,
-            maxPrice: 15,
+            maxPrice: 18,
             autoAdjust: false
         },
         { // Apple MP1U2LL/A iPad 5th Gen 32GB WiFi + Cellular - Space Gray
