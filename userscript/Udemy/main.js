@@ -8,7 +8,7 @@
 
         let button = null;
         // button = $("button:contains('Enroll Now')");
-        button = $("button:contains('Enroll')");
+        button = $("button:contains('Enroll ')");
         if(button && button.length>0){
             console.log('Eli: clicking button', button);
             button.click();
@@ -16,10 +16,11 @@
 
         let anchor = null;
         // anchor = $("a:contains('Enroll Now')");
-        anchor = $("a:contains('Enroll')");
+        anchor = $("a:contains('Enroll ')");
         if(anchor && anchor.length>0){
             console.log('Eli: setting window.location:', anchor[0].href);
-            window.location = anchor[0].href;
+            // window.location = anchor[0].href;
+            window.location.redirect(anchor[0].href);
         }
     };
 })();
