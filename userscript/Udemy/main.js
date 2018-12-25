@@ -18,9 +18,11 @@
         // anchor = $("a:contains('Enroll Now')");
         anchor = $("a:contains('Enroll ')");
         if(anchor && anchor.length>0){
-            console.log('Eli: setting window.location:', anchor[0].href);
-            // window.location = anchor[0].href;
-            window.location.redirect(anchor[0].href);
+            if(anchor[0].innerText.startsWith('Enroll')) {
+                console.log('Eli: setting window.location:', anchor[0].href);
+                // window.location = anchor[0].href;
+                window.location.redirect(anchor[0].href);
+            }
         }
     };
 })();
