@@ -204,7 +204,7 @@ function main(targets, settings) {
             element.target="_blank";
             element.href = "http://www.google.com/calendar/event?" +
                 "action=TEMPLATE" +
-                "&text=[2nd Turn]" + itemId + '-' + itemName.replace(/[:#\\\/]+/g, "_") +
+                "&text=[2nd Turn " + itemId + '] ' + itemName.replace(/[:#\\\/]+/g, "-") +
                 "&dates=" + time1 + '/' + time2 +
                 "&details=" + itemUrl
                 "&location=2nd+Turn" +
