@@ -3,10 +3,10 @@
     // Your code here...
     console.log('Eli: Tampermonkey starts...', window.location);
 
-    window.onload = function() {
-        console.log('Eli: the page has finished loading...');
+    const TheKeyword='Enroll ';
 
-        const keyword='Enroll '
+    function findKeywordToClick(keyword) {
+        console.log('Eli: findKeywordToClick...', keyword);
 
         let button = null;
         // button = $("button:contains('Enroll Now')");
@@ -28,5 +28,14 @@
                 // window.location.redirect(anchor[0].href);
             }
         }
+    };
+
+    window.onload = function() {
+        console.log('Eli: the page has finished loading...');
+
+        setInterval(function(){
+            findKeywordToClick(TheKeyword);
+        }, 5000);
+
     };
 })();
