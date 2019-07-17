@@ -19,38 +19,7 @@ function main(targets, settings) {
             id: 2054524,
             maxPrice: 18,
             autoAdjust: false
-        },
-        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
-            id: 2054525,
-            maxPrice: 18,
-            autoAdjust: false
-        },
-        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
-            id: 2052935,
-            maxPrice: 18,
-            autoAdjust: false
-        },
-        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
-            id: 2054526,
-            maxPrice: 18,
-            autoAdjust: false
-        },
-        { // Qardio (B100-IOW) Base Bluetooth Smart Scale and Body Analyzer
-            id: 2054650,
-            maxPrice: 18,
-            autoAdjust: false
-        },
-        
-        { // Microsoft P3Q-00020 Wireless Display Adapter
-            id: 2055866 ,
-            maxPrice: 20.01,
-            autoAdjust: false
-        },
-        { // HTC 99HZF001-00 Nexus 9 8.9in 16GB Android 5.0 Tablet - White
-            id: 2055489 ,
-            maxPrice: 111.01,
-            autoAdjust: false
-        },
+        }
         //-------
     ].concat(targets);
     console.log('# merged Targets', Targets);
@@ -59,7 +28,8 @@ function main(targets, settings) {
         myUsername: 'nobody',
         biddingInAdvance: 5, // 5 second
         lastRefreshInAdvance: 30, // 30 second
-        sessionRefreshPeriod: 10*60 // second
+        sessionRefreshPeriod: 10 * 60, // second
+        quicklyRefreshPeriod: 0.05 // second
     }, settings);
     console.log('# merged Settings', Settings);
 
@@ -67,26 +37,26 @@ function main(targets, settings) {
 
     const XPath = {
         details: {
-            itemName:   '//*[@id="detail-title"]/h3/text()',
-            itemId:     '//*[@id="detail-title"]/span/text()',
+            itemName: '//*[@id="detail-title"]/h3/text()',
+            itemId:  '//*[@id="detail-title"]/span/text()',
             currentBid: '//*[@id="detail"]/div[2]/div[2]/span[2]/span',
-            timeLeft:   '//*[@id="detail"]/div[2]/div[5]/span[2]/font/translate/span',
-            endTime:    '//*[@id="detail"]/div[2]/div[6]/span[2]',
+            timeLeft: '//*[@id="detail"]/div[2]/div[5]/span[2]/font/translate/span',
+            endTime: '//*[@id="detail"]/div[2]/div[6]/span[2]',
             highBidder: '//*[@id="detail"]/div[2]/div[8]/span[2]',
-            bidInput:   '//*[@id="bid"]/form/div[3]/span[2]/input',
-            bidButton:  '//*[@id="bid"]/form/div[4]/span[2]/input',
-            watchLink:  '//*[@id="detail-title"]'
+            bidInput: '//*[@id="bid"]/form/div[3]/span[2]/input',
+            bidButton: '//*[@id="bid"]/form/div[4]/span[2]/input',
+            watchLink: '//*[@id="detail-title"]'
         },
         bidding: {
-            itemName:   '//*[@id="bid"]/font/p[2]/text()',
-            itemId:     '//*[@id="bid"]/p/font/font/a',
-            maxBid:     '//*[@id="bid"]/font/div[2]/span[2]',
-            bidButton:  '//*[@id="bid"]/font/form/p/input[1]',
+            itemName: '//*[@id="bid"]/font/p[2]/text()',
+            itemId: '//*[@id="bid"]/p/font/font/a',
+            maxBid: '//*[@id="bid"]/font/div[2]/span[2]',
+            bidButton: '//*[@id="bid"]/font/form/p/input[1]',
             autoChange: '//*[@id="bid"]/font/p[1]/translate/span/text()'
         },
         confirm: {
-            currentHighBidder: '//*[@id="confirmation"]/div/p/span',
-            itemHref:          '//*[@id="confirmation"]/font/p[1]/a'
+            currentHighBidder: '//*[@id="confirmation"]/div[1]/p',
+            itemHref: '//*[@id="confirmation"]/p[1]/a'
         }
     };
 
@@ -95,10 +65,10 @@ function main(targets, settings) {
     const confirmUrlRegEx = new RegExp('^https://bbyc.dtdeals.com/index.cfm/bid/confirm$'); // e.g. https://bbyc.dtdeals.com/index.cfm/bid/confirm
 
     function getUrl() {
-        let url=location.href;
+        let url = location.href;
         let urlLastChar = url.substr(url.length - 1);
-        if(urlLastChar==='/') {
-            url = url.slice(0, url.length-1); // remove last slash, if there is
+        if (urlLastChar === '/') {
+            url = url.slice(0, url.length - 1); // remove last slash, if there is
         }
         return url;
     };
@@ -109,11 +79,11 @@ function main(targets, settings) {
 
     function getElementText(xpath) {
         let element = getElementByXpath(xpath);
-        if(element) {
+        if (element) {
             let text = null;
-            if(element.wholeText) {
+            if (element.wholeText) {
                 text = element.wholeText;
-            }else if(element.innerText) {
+            } else if (element.innerText) {
                 text = element.innerText;
             }
             return text;
@@ -123,14 +93,14 @@ function main(targets, settings) {
 
     function getElementInteger(xpath) {
         let element = getElementByXpath(xpath);
-        if(element) {
+        if (element) {
             let text = null;
-            if(element.wholeText) {
+            if (element.wholeText) {
                 text = element.wholeText;
-            }else if(element.innerText) {
+            } else if (element.innerText) {
                 text = element.innerText;
             }
-            if(text) {
+            if (text) {
                 return text.replace(/[^0-9]/g, '');
             }
         }
@@ -151,8 +121,8 @@ function main(targets, settings) {
         let parts = text.split(' ');
         let key = keyword.toLowerCase();
         for (let i = 1; i < parts.length; i++) {
-            if(parts[i].toLowerCase().startsWith(key)) {
-                let ans = parts[i-1];
+            if (parts[i].toLowerCase().startsWith(key)) {
+                let ans = parts[i - 1];
                 return parseInt(ans);
             }
         }
@@ -167,8 +137,8 @@ function main(targets, settings) {
             let min = getNumberBefore(text, 'minute');
             let sec = getNumberBefore(text, 'second');
             ans =
-                day * (24*60*60) +
-                hou * (60*60) +
+                day * (24 * 60 * 60) +
+                hou * (60 * 60) +
                 min * (60) +
                 sec;
         }
@@ -176,7 +146,7 @@ function main(targets, settings) {
     }
 
     function matchUsername(bidder) {
-        let myname = Settings.myUsername.slice(0, 2) + '**' + Settings.myUsername.slice(Settings.myUsername.length-2);
+        let myname = Settings.myUsername.slice(0, 2) + '**' + Settings.myUsername.slice(Settings.myUsername.length - 2);
         return (myname == bidder) ? true : false;
     }
 
@@ -186,7 +156,7 @@ function main(targets, settings) {
         }
 
         for (let i = 0; i < Targets.length; i++) {
-            if(Targets[i].id===id && Targets[i].maxPrice>0) {
+            if (Targets[i].id === id && Targets[i].maxPrice > 0) {
                 return Targets[i];
             }
         }
@@ -195,18 +165,18 @@ function main(targets, settings) {
 
     function appendGoogleCalendar() {
         let targetComponent = getElementByXpath(XPath.details.watchLink);
-        if(targetComponent && secondLeft>0) {
-            let element = document.createElement ('a');
-            let time1 = (new Date(Date.now() + (secondLeft-90)*1000)).toISOString().replace(/-|:|\.\d\d\d/g,"");
-            let time2 = (new Date(Date.now() + (secondLeft-30)*1000)).toISOString().replace(/-|:|\.\d\d\d/g,"");
+        if (targetComponent && secondLeft > 0) {
+            let element = document.createElement('a');
+            let time1 = (new Date(Date.now() + (secondLeft - 90) * 1000)).toISOString().replace(/-|:|\.\d\d\d/g, "");
+            let time2 = (new Date(Date.now() + (secondLeft - 30) * 1000)).toISOString().replace(/-|:|\.\d\d\d/g, "");
             let itemUrl = location.href;
             element.innerHTML = 'Calendar';
-            element.target="_blank";
+            element.target = "_blank";
             element.href = "http://www.google.com/calendar/event?" +
                 "action=TEMPLATE" +
                 "&text=[2nd Turn " + itemId + '] ' + itemName.replace(/[:#\\\/]+/g, "-") +
                 "&dates=" + time1 + '/' + time2 +
-                "&details=" + itemUrl
+                "&details=" + itemUrl +
                 "&location=2nd+Turn" +
                 "&sf=true";
             targetComponent.append(element);
@@ -221,8 +191,20 @@ function main(targets, settings) {
 
             let bidInput = getElementByXpath(XPath.details.bidInput);
             let bidButton = getElementByXpath(XPath.details.bidButton);
-            bidInput.value = info.maxPrice;
-            bidButton.click();
+            if (bidInput && bidButton) {
+                if (info.autoAdjust) {
+                    console.log('# initialBid. autoAdjust=>', bidInput.value);
+                } else {
+                    console.log('# initialBid. maxPrice=>', info.maxPrice);
+                    bidInput.value = info.maxPrice;
+                }
+
+                if (bidInput.value <= info.maxPrice) {
+                    bidButton.click();
+                }
+            } else {
+                console.log('# initialBid ERROR!');
+            }
         }
     }
 
@@ -231,16 +213,16 @@ function main(targets, settings) {
         if (info && info.maxPrice) {
             stopAllTimers();
 
-            let maxBid = getFloat( getElementText(XPath.bidding.maxBid) );
+            let maxBid = getFloat(getElementText(XPath.bidding.maxBid));
             let autoChange = getElementText(XPath.bidding.autoChange);
             let bidButton = getElementByXpath(XPath.bidding.bidButton);
 
-            if(info.maxPrice === maxBid) {
+            if (info.maxPrice >= maxBid) {
                 console.log('# placeBid on right price ', maxBid);
                 bidButton.click();
             }
 
-            if(info.autoAdjust===true && autoChange && autoChange.includes('Your bid was less than the minimum bid amount. Your bid has automatically been changed to')) {
+            if (info.autoAdjust === true && autoChange && autoChange.includes('Your bid was less than the minimum bid amount. Your bid has automatically been changed to')) {
                 console.log('# placeBid on auto changed price ', maxBid);
                 bidButton.click();
             }
@@ -256,16 +238,19 @@ function main(targets, settings) {
         }
     }
 
-    function stopAllTimers(){
+    function stopAllTimers() {
         console.log('# stopAllTimers.');
-        if(biddingTimer) {
+        if (biddingTimer) {
             clearTimeout(biddingTimer);
         }
-        if(lastRefreshTimer) {
+        if (lastRefreshTimer) {
             clearTimeout(lastRefreshTimer);
         }
-        if(sessionTimer) {
+        if (sessionTimer) {
             clearTimeout(sessionTimer);
+        }
+        if (quickRefreshTimer) {
+            clearTimeout(quickRefreshTimer);
         }
     }
 
@@ -288,12 +273,13 @@ function main(targets, settings) {
     var biddingTimer = null;
     var lastRefreshTimer = null;
     var sessionTimer = null;
+    var quickRefreshTimer = null;
 
     // avoid session timeout
-    console.log('# Refresh to keep session after ' + (Settings.sessionRefreshPeriod/60).toFixed() + ' (mins)');
-    sessionTimer = setTimeout(function(){
+    console.log('# Refresh to keep session after ' + (Settings.sessionRefreshPeriod / 60).toFixed() + ' (mins)');
+    sessionTimer = setTimeout(function () {
         location.reload();
-    }, Settings.sessionRefreshPeriod*1000);
+    }, Settings.sessionRefreshPeriod * 1000);
 
     if (detailsUrlRegEx.test(url)) {
         console.log('# This is an item info page.');
@@ -303,7 +289,7 @@ function main(targets, settings) {
         console.log('# Item Name:', itemName);
         console.log('# Item ID:', itemId);
 
-        currentBid = getFloat( getElementText(XPath.details.currentBid) );
+        currentBid = getFloat(getElementText(XPath.details.currentBid));
         timeLeft = getElementText(XPath.details.timeLeft);
         endTime = getElementText(XPath.details.endTime);
         highBidder = getElementText(XPath.details.highBidder);
@@ -315,7 +301,7 @@ function main(targets, settings) {
         console.log('# Item EndTime:', endTime);
         console.log('# Item HighBidder:', highBidder);
 
-        if (secondLeft>0) {
+        if (secondLeft > 0) {
             // debugger;
 
             target = matchTarget(itemId);
@@ -323,25 +309,34 @@ function main(targets, settings) {
                 console.log('# Target:', target);
 
                 let secToLastRefrsh = secondLeft - Settings.lastRefreshInAdvance;
-                if (secToLastRefrsh>=0) { // set last refresh
-                    console.log('# Last refresh after ' + (secToLastRefrsh/60).toFixed(2) + ' (min) = [' + secToLastRefrsh + '(sec)]');
-                    lastRefreshTimer = setTimeout(function(){
+                let secToBid = secondLeft - Settings.biddingInAdvance;
+
+                if (secToLastRefrsh >= 0) { // set last refresh
+                    console.log('# Last refresh after ' + (secToLastRefrsh / 60).toFixed(2) + ' (min) = [' + secToLastRefrsh + '(sec)]');
+                    lastRefreshTimer = setTimeout(function () {
                         location.reload();
-                    }, secToLastRefrsh*1000);
+                    }, secToLastRefrsh * 1000);
                 }
 
                 if (matchUsername(highBidder)) {
                     console.log('# I am the current high bidder!');
-                } else {
-                    let secToBid = secondLeft - Settings.biddingInAdvance;
-                    if (secToBid>=0) {
-                        console.log('# To Bid after ' + (secToBid/60).toFixed(2) + ' (min) = [' + secToBid + '(sec)]');
-                    } else {
-                        secToBid=0; // since not finished always try to bid
+                    if (secToLastRefrsh <= 0 || secToBid <= 0) { // bidding finish soon, keep watching
+                        console.log('# Bidding is finishing soon!');
+
+                        quickRefreshTimer = setTimeout(function () {
+                            console.log('# Quickly Refresh!');
+                            location.reload();
+                        }, Settings.quicklyRefreshPeriod * 1000);
                     }
-                    biddingTimer = setTimeout(function(){
+                } else {
+                    if (secToBid >= 0) {
+                        console.log('# To Bid after ' + (secToBid / 60).toFixed(2) + ' (min) = [' + secToBid + '(sec)]');
+                    } else {
+                        secToBid = 0; // since not finished always try to bid
+                    }
+                    biddingTimer = setTimeout(function () {
                         initialBid(target);
-                    }, secToBid*1000);
+                    }, secToBid * 1000);
                 }
             }
         } else {
@@ -369,17 +364,19 @@ function main(targets, settings) {
         console.log('# This is an confirm page.');
 
         if (checkCurrentHighBidder()) {
-            // go back to detail page
-            let href = getElementHref(XPath.confirm.itemHref);
-            if (href) {
-                window.location.href = href;
-            }
+            console.log('# Beaten the other competitors!');
+
         } else {
             console.log('# Something went wrong !?');
             stopAllTimers(); // stay here to check page content
         }
+
+        // go back to detail page
+        let href = getElementHref(XPath.confirm.itemHref);
+        if (href) {
+            window.location.href = href;
+        }
+
     }
 
 };
-
-
