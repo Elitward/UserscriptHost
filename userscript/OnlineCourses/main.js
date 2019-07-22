@@ -5,6 +5,7 @@
     console.log('Eli: Haha...');
 
     $(window).load(function () {
+        console.log('Eli: after window load...');
         // run code
         // var keyword = $("span:contains('Click to Redeem')");
         // var keyword = $("span:contains('Redeem Offer')");
@@ -37,6 +38,6 @@
             } else {
                 return false;
             }
-        }).click();
+        }); // .click();
     });
 })();
