@@ -1,4 +1,4 @@
-(function() {
+function OnlineCoursesMain() {
     'use strict';
 
     // Your code here...
@@ -40,4 +40,4 @@
             }
         }); // .click();
     });
-})();
+}
