@@ -3,7 +3,7 @@
     // Your code here...
     console.log('Eli: Tampermonkey starts...', window.location);
 
-    const TheKeyword='Enroll ';
+    const TheKeyword=['Enroll ', 'ENROLL '];
 
     function findKeywordToClick(keyword) {
         console.log('Eli: findKeywordToClick...', keyword);
@@ -34,7 +34,9 @@
         console.log('Eli: the page has finished loading...');
 
         setInterval(function(){
-            findKeywordToClick(TheKeyword);
+            TheKeyword.forEach(keyword=>{
+                findKeywordToClick(keyword);
+            });
         }, 5000);
 
     };
