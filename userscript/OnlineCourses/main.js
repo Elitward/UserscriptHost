@@ -4,7 +4,7 @@ function OnlineCoursesMain() {
     // Your code here...
     console.log('Eli: Haha...');
 
-    $(window).load(function () {
+    function findKeywordToClick() {
         console.log('Eli: after window load...');
         // run code
         // var keyword = $("span:contains('Click to Redeem')");
@@ -41,5 +41,9 @@ function OnlineCoursesMain() {
                 return false;
             }
         }); // .click();
-    });
+    }
+
+    $(window).load(findKeywordToClick);
+
+    setTimeout(findKeywordToClick, 60*1000);
 }
