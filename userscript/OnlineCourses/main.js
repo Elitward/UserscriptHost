@@ -12,7 +12,8 @@ function OnlineCoursesMain() {
         var keywords = [
             $("span:contains('Click to Redeem')"),
             $("span:contains('Redeem Offer')"),
-            $("span:contains('Enroll Now')")
+            $("span:contains('Enroll Now')"),
+            $("span:contains('Redeem Coupon')")
         ];
         keywords.forEach(function(keyword){
             if(keyword){
