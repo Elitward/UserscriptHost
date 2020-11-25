@@ -3,7 +3,7 @@
     // Your code here...
     console.log('Eli: Tampermonkey starts...', window.location);
 
-    const TheKeyword=['Enroll ', 'ENROLL '];
+    const TheKeyword=['Enroll ', 'ENROLL ', 'Go to course'];
 
     function findKeywordToClick(keyword) {
         console.log('Eli: findKeywordToClick...', keyword);
